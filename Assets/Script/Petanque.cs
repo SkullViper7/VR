@@ -21,16 +21,22 @@ public class Petanque : MonoBehaviour
 
     IEnumerator WaitStopMoveBall()
     {
+        bool ballStop = false;
+        bool allStop = false;
         foreach (GameObject go in _boulesP1)
         {
+            ballStop = false;
             rb = go.GetComponent<Rigidbody>();
             speed = rb.velocity.magnitude;
+
             if (speed < 0.5)
             {
+                ballStop = true;
                 Score();
             }
         }
-       yield return null;
+        if (ballStop) allStop = true;
+        yield return new WaitUntil(() => allStop);
     }
 
     private void Score()

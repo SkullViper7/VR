@@ -11,8 +11,8 @@ public class Petanque : MonoBehaviour
     [SerializeField] private GameObject _cochonet;
     private float speed;
     private Rigidbody rb;
-    public int ScoreP1;
-    public int ScoreP2;
+    private int ScoreP1;
+    private int ScoreP2;
 
     private void OnCollisionEnter(Collision collision)
     {
@@ -51,6 +51,7 @@ public class Petanque : MonoBehaviour
             dist = dist * 100;
             ScoreP2 = ScoreP2 + (int)dist;
         }
+        ScoreUI.Instance.UpdateScore(ScoreP1, ScoreP2);
         Debug.Log("Score P1 " + ScoreP1);
         Debug.Log("Score P2 " + ScoreP2);
     }

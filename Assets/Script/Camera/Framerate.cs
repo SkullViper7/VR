@@ -4,10 +4,10 @@ using UnityEngine;
 
 public class Framerate : MonoBehaviour
 {
-    private void Start()
-    {
-        Application.targetFrameRate = 20;
-    }
+    //private void Start()
+    //{
+    //    Application.targetFrameRate = 20;
+    //}
 
     void OnRenderImage(RenderTexture source, RenderTexture destination)
     {

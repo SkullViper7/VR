@@ -1,64 +1,114 @@
 using System.Collections;
-using System.Collections.Generic;
-using UnityEditor.Rendering;
 using UnityEngine;
-using UnityEngine.SocialPlatforms.Impl;
 
 public class Petanque : MonoBehaviour
 {
     [SerializeField] private GameObject[] _boulesP1;
     [SerializeField] private GameObject[] _boulesP2;
     [SerializeField] private GameObject _cochonet;
-    private float speed;
-    private Rigidbody rb;
-    private int ScoreP1;
-    private int ScoreP2;
+    public string playerName1;
+    public string playerName2;
+    private float _speed;
+    private Rigidbody _rb;
 
-    private void OnCollisionEnter(Collision collision)
+    //Singleton
+    private static Petanque _instance = null;
+    private Petanque() { }
+    public static Petanque Instance => _instance;
+    //
+
+    private void Awake()
     {
-        WaitStopMoveBall();
+        //Singleton
+        if (_instance != null && _instance != this)
+        {
+            Destroy(this.gameObject);
+            return;
+        }
+        else
+        {
+            _instance = this;
+        }
+        //
     }
 
-    IEnumerator WaitStopMoveBall()
+    public IEnumerator WaitStopMoveBall()
     {
-        bool ballStop = false;
-        bool allStop = false;
+        bool allStopP1 = false;
+        bool allStopP2 = false;
+
         foreach (GameObject go in _boulesP1)
         {
-            ballStop = false;
-            rb = go.GetComponent<Rigidbody>();
-            speed = rb.velocity.magnitude;
-
-            if (speed < 0.5)
+            _rb = go.GetComponent<Rigidbody>();
+            _speed = _rb.velocity.magnitude;
+            if (_speed >= 0.5f)
             {
-                ballStop = true;
-                Score();
+                yield return new WaitUntil(() => _rb.velocity.magnitude < 0.5f);
             }
         }
-        if (ballStop) allStop = true;
-        yield return new WaitUntil(() => allStop);
+
+        allStopP1 = true;
+        foreach (GameObject go in _boulesP2)
+        {
+            _rb = go.GetComponent<Rigidbody>();
+            _speed = _rb.velocity.magnitude;
+            if (_speed >= 0.5f)
+            {
+                yield return new WaitUntil(() => _rb.velocity.magnitude < 0.5f);
+            }
+        }
+
+        allStopP2 = true;
+        if (allStopP1 && allStopP2)
+        {
+            GetClosestPlayer();
+        }
     }
 
-    private void Score()
+    private void GetClosestPlayer()
     {
-        ScoreP1 = 0;
-        ScoreP2 = 0;
+        float closestDistanceP1 = float.MaxValue;
+        float closestDistanceP2 = float.MaxValue;
 
         foreach (GameObject go in _boulesP1)
+
         {
-            float dist = Vector3.Distance(go.transform.position, _cochonet.transform.position);
-            dist = dist * 100;
-            ScoreP1 = ScoreP1 + (int)dist;
+            float distance = Vector3.Distance(go.transform.position, _cochonet.transform.position);
+            if (distance < closestDistanceP1)
+            {
+                closestDistanceP1 = distance;
+            }
         }
 
         foreach (GameObject go in _boulesP2)
         {
-            float dist = Vector3.Distance(go.transform.position, _cochonet.transform.position);
-            dist = dist * 100;
-            ScoreP2 = ScoreP2 + (int)dist;
+            float distance = Vector3.Distance(go.transform.position, _cochonet.transform.position);
+            if (distance < closestDistanceP2)
+            {
+                closestDistanceP2 = distance;
+            }
         }
-        ScoreUI.Instance.UpdateScore(ScoreP1, ScoreP2);
-        Debug.Log("Score P1 " + ScoreP1);
-        Debug.Log("Score P2 " + ScoreP2);
+        if (closestDistanceP1 < closestDistanceP2)
+        {
+            if (string.IsNullOrEmpty(playerName1))
+            {
+                ScoreUI.Instance.UpdateScore("le joueur 1");
+            }
+            else
+            {
+                ScoreUI.Instance.UpdateScore(playerName1);
+            }
+        }
+        else
+        {
+            if (string.IsNullOrEmpty(playerName2))
+            {
+                ScoreUI.Instance.UpdateScore("le joueur 2");
+            }
+            else
+            {
+                ScoreUI.Instance.UpdateScore(playerName2);
+            }
+        }
     }
 }

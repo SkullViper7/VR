@@ -16,7 +16,7 @@ namespace Unity.VRTemplate
         Transform m_StartPoint = null;
 
         [SerializeField]
-        [Tooltip("The speed at which the projectile is launched")]
+        [Tooltip("The _speed at which the projectile is launched")]
         float m_LaunchSpeed = 1.0f;
 
         public void Fire()

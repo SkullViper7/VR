@@ -318,7 +318,7 @@ namespace UnitySimpleLiquid
 		#region ChangeColor
 		//playerMultiply for faster color change
 		[Range(0, 2)]
-		[Tooltip("Mixing speed ratio of different colors")]
+		[Tooltip("Mixing _speed ratio of different colors")]
 		public float mixingSpeed = 1;
 
 		private void SendLiquidContainer(LiquidContainer lc)

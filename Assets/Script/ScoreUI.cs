@@ -6,8 +6,7 @@ using UnityEngine.SocialPlatforms.Impl;
 
 public class ScoreUI : MonoBehaviour
 {
-    public TextMeshPro _scoreTextP1;
-    public TextMeshPro _scoreTextP2;
+    public TextMeshPro _scoreText;
 
     //Singleton
     private static ScoreUI _instance = null;
@@ -28,13 +27,11 @@ public class ScoreUI : MonoBehaviour
             _instance = this;
         }
         //
-        _scoreTextP1.text = "Score joueur 1 : 0";
-        _scoreTextP2.text = "Score joueur 2 : 0";
+        _scoreText.text = "En attente du lancement de la première boule";
     }
 
-    public void UpdateScore(int scoreP1, int scoreP2)
+    public void UpdateScore(string closetPlayer)
     {
-        _scoreTextP1.text = "Score joueur 1 : " + scoreP1.ToString();
-        _scoreTextP2.text = "Score joueur 2 : " + scoreP2.ToString();
+        _scoreText.text = "Le joueur le plus proche est " + closetPlayer;
     }
 }

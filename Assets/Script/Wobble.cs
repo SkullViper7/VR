@@ -4,6 +4,9 @@ using UnityEngine;
 
 public class Wobble : MonoBehaviour
 {
+
+    // /!\ Script from https://www.youtube.com/watch?v=eIZgPAZx56s&t=1s /!\ \\
+
     Renderer rend;
     Vector3 lastPos;
     Vector3 velocity;

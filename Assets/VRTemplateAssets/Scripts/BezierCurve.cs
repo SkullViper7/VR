@@ -58,7 +58,7 @@ namespace Unity.VRTemplate
         [SerializeField, Tooltip("When enabled, the line color gradient will be animated so that an opaque part travels along the line.")]
         bool m_Animate;
 
-        [SerializeField, Tooltip("If animated, this controls the speed that the animation of the line.")]
+        [SerializeField, Tooltip("If animated, this controls the _speed that the animation of the line.")]
         float m_AnimSpeed = 0.25f;
 
         [SerializeField, Tooltip("If animated, this color will be the main opaque color of the gradient")]

@@ -34,11 +34,13 @@ public class ScoreUI : MonoBehaviour
         _scoreP2.text = Petanque.Instance.playerName2 + " : 0";
     }
 
+    // Va 
     public void UpdateClosetPlayer(string closetPlayer)
     {
         _closetPlayerText.text = "Le joueur le plus proche est " + closetPlayer;
     }
 
+    // Va update le texte score des joueurs avec une variable int.
     public void UpdateScorePlayer(int score)
     {
         _scoreP1.text = Petanque.Instance.playerName1 + " : " + score;

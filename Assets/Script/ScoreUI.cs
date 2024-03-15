@@ -31,7 +31,7 @@ public class ScoreUI : MonoBehaviour
         //
 
         //Affichage de départ par défaut.
-        _closetPlayerText.text = "En attente du lancement de la première boule";
+        _closetPlayerText.text = "En attente";
         _scoreP1.text = Petanque.Instance.playerName1 + " : 0";
         _scoreP2.text = Petanque.Instance.playerName2 + " : 0";
     }

@@ -138,23 +138,26 @@ public class Petanque : MonoBehaviour
             DrunkManager.Instance.Tip.text = "Drink !";
             PlayerManager.Instance.IsDrinking = true;
 
-            if (PlayerManager.Instance.IsPlayer1Playing)
+            for (int i = 0; i < 3; i++)
             {
-                for (int i = 0; i < PlayerManager.Instance.Player1Balls.Count; i++)
-                {
-                    PlayerManager.Instance.Player1Balls[i].SetActive(false);
-                }
+                PlayerManager.Instance.Player1Balls.Add(GameObject.FindGameObjectWithTag("Player1Ball"));
+                PlayerManager.Instance.Player1Balls[i].transform.position = PlayerManager.Instance.Player1BallsOriginalPos[i].transform.position;
             }
-            else
+
+            for (int i = 0; i < 3; i++)
             {
-                for (int i = 0; i < PlayerManager.Instance.Player2Balls.Count; i++)
-                {
-                    PlayerManager.Instance.Player2Balls[i].SetActive(false);
-                }
+                PlayerManager.Instance.Player2Balls.Add(GameObject.FindGameObjectWithTag("Player2Ball"));
+                PlayerManager.Instance.Player2Balls[i].transform.position = PlayerManager.Instance.Player2BallsOriginalPos[i].transform.position;
             }
+            PlayerManager.Instance.ChangePlayer(true);
         }
         if (PlayerManager.Instance.Player1Balls.Count == 0)
         {
+            DrunkManager.Instance.Slider.SetActive(true);
+            DrunkManager.Instance.DrinkSlider.value = 0;
+            DrunkManager.Instance.Tip.text = "Drink !";
+            PlayerManager.Instance.IsDrinking = true;
+            Debug.Log("Next Player");
             PlayerManager.Instance.ChangePlayer(false);
         }
     }
@@ -171,23 +174,28 @@ public class Petanque : MonoBehaviour
             DrunkManager.Instance.Tip.text = "Drink !";
             PlayerManager.Instance.IsDrinking = true;
 
-            if (PlayerManager.Instance.IsPlayer1Playing)
+            for (int i = 0; i < 3; i++)
             {
-                for (int i = 0; i < PlayerManager.Instance.Player1Balls.Count; i++)
-                {
-                    PlayerManager.Instance.Player1Balls[i].SetActive(false);
-                }
+                PlayerManager.Instance.Player1Balls.Add(GameObject.FindGameObjectWithTag("Player1Ball"));
+                PlayerManager.Instance.Player1Balls[i].transform.position = PlayerManager.Instance.Player1BallsOriginalPos[i].transform.position;
             }
-            else
+
+            for (int i = 0; i < 3; i++) 
             {
-                for (int i = 0; i < PlayerManager.Instance.Player2Balls.Count; i++)
-                {
-                    PlayerManager.Instance.Player2Balls[i].SetActive(false);
-                }
+                PlayerManager.Instance.Player2Balls.Add(GameObject.FindGameObjectWithTag("Player2Ball"));
+                PlayerManager.Instance.Player2Balls[i].transform.position = PlayerManager.Instance.Player2BallsOriginalPos[i].transform.position;
             }
+
+            PlayerManager.Instance.ChangePlayer(true);
         }
         if (PlayerManager.Instance.Player1Balls.Count == 0)
         {
+            DrunkManager.Instance.Slider.SetActive(true);
+            DrunkManager.Instance.DrinkSlider.value = 0;
+            DrunkManager.Instance.Tip.text = "Drink !";
+            PlayerManager.Instance.IsDrinking = true;
+
+            Debug.Log("Next Player");
             PlayerManager.Instance.ChangePlayer(false);
         }
     }

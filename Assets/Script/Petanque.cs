@@ -97,25 +97,15 @@ public class Petanque : MonoBehaviour
             // Affiche un nom par défaut si aucun nom n'a été donné.
             if (string.IsNullOrEmpty(playerName1))
             {
-                ScoreUI.Instance.UpdateClosetPlayer("le joueur 1");
-
-                if (PlayerManager.Instance.Player1Balls.Count == 0 && PlayerManager.Instance.Player2Balls.Count == 0)
-                {
-                    _scoreP1++;
-                    ScoreUI.Instance.UpdateScorePlayer(_scoreP1, _scoreP2);
-                }
+                ScoreUI.Instance.UpdateClosetPlayer("Joueur 1");
+                UpdateScorePlayer1();
             }
             //
 
             else
             {
                 ScoreUI.Instance.UpdateClosetPlayer(playerName1);
-
-                if (PlayerManager.Instance.Player1Balls.Count == 0 && PlayerManager.Instance.Player2Balls.Count == 0)
-                {
-                    _scoreP1++;
-                    ScoreUI.Instance.UpdateScorePlayer(_scoreP1, _scoreP2);
-                }
+                UpdateScorePlayer1();
             }
         }
         else
@@ -123,26 +113,34 @@ public class Petanque : MonoBehaviour
             // Affiche un nom par défaut si aucun nom n'a été donné.
             if (string.IsNullOrEmpty(playerName2))
             {
-                ScoreUI.Instance.UpdateClosetPlayer("le joueur 2");
-
-                if (PlayerManager.Instance.Player1Balls.Count == 0 && PlayerManager.Instance.Player2Balls.Count == 0)
-                {
-                    _scoreP2++;
-                    ScoreUI.Instance.UpdateScorePlayer(_scoreP1, _scoreP2);
-                }
+                ScoreUI.Instance.UpdateClosetPlayer("Joueur 2");
+                UpdateScorePlayer2();
             }
             //
 
             else
             {
                 ScoreUI.Instance.UpdateClosetPlayer(playerName2);
-
-                if (PlayerManager.Instance.Player1Balls.Count == 0 && PlayerManager.Instance.Player2Balls.Count == 0)
-                {
-                    _scoreP2++;
-                    ScoreUI.Instance.UpdateScorePlayer(_scoreP1, _scoreP2);
-                }
+                UpdateScorePlayer2();
             }
+        }
+    }
+
+    private void UpdateScorePlayer1()
+    {
+        if (PlayerManager.Instance.Player1Balls.Count == 0 && PlayerManager.Instance.Player2Balls.Count == 0)
+        {
+            _scoreP1++;
+            ScoreUI.Instance.UpdateScorePlayer(_scoreP1, _scoreP2);
+        }
+    }
+
+    private void UpdateScorePlayer2()
+    {
+        if (PlayerManager.Instance.Player1Balls.Count == 0 && PlayerManager.Instance.Player2Balls.Count == 0)
+        {
+            _scoreP2++;
+            ScoreUI.Instance.UpdateScorePlayer(_scoreP1, _scoreP2);
         }
     }
 }

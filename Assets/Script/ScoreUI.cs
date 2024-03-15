@@ -39,7 +39,7 @@ public class ScoreUI : MonoBehaviour
     // Va update le joueur le plus proche avec une variable string nécessaire.
     public void UpdateClosetPlayer(string closetPlayer)
     {
-        _closetPlayerText.text = "Le joueur le plus proche est " + closetPlayer;
+        _closetPlayerText.text = "Le joueur le plus proche : " + closetPlayer;
     }
 
     // Va update le texte score des joueurs avec une variable int pour le joueur 1 & 2.

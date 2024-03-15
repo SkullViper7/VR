@@ -8,6 +8,8 @@ public class Petanque : MonoBehaviour
     [SerializeField] private GameObject _cochonet;
     public string playerName1;
     public string playerName2;
+    private int _scoreP1;
+    private int _scoreP2;
     private float _speed;
     private Rigidbody _rb;
 
@@ -92,22 +94,30 @@ public class Petanque : MonoBehaviour
         {
             if (string.IsNullOrEmpty(playerName1))
             {
-                ScoreUI.Instance.UpdateScore("le joueur 1");
+                ScoreUI.Instance.UpdateClosetPlayer("le joueur 1");
+                _scoreP1++;
+                ScoreUI.Instance.UpdateScorePlayer(_scoreP1);
             }
             else
             {
-                ScoreUI.Instance.UpdateScore(playerName1);
+                ScoreUI.Instance.UpdateClosetPlayer(playerName1);
+                _scoreP1++;
+                ScoreUI.Instance.UpdateScorePlayer(_scoreP1);
             }
         }
         else
         {
             if (string.IsNullOrEmpty(playerName2))
             {
-                ScoreUI.Instance.UpdateScore("le joueur 2");
+                ScoreUI.Instance.UpdateClosetPlayer("le joueur 2");
+                _scoreP2++;
+                ScoreUI.Instance.UpdateScorePlayer(_scoreP2);
             }
             else
             {
-                ScoreUI.Instance.UpdateScore(playerName2);
+                ScoreUI.Instance.UpdateClosetPlayer(playerName2);
+                _scoreP2++;
+                ScoreUI.Instance.UpdateScorePlayer(_scoreP2);
             }
         }
     }

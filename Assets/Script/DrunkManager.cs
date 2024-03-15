@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 using UnityEngine.Rendering;
 using UnityEngine.UI;
@@ -17,7 +18,9 @@ public class DrunkManager : MonoBehaviour
     [SerializeField] Volume _wobble;
     [SerializeField] Animator _canvas;
     [SerializeField] Animator _wobbleAnim;
-    public Slider DrinkSlider; 
+    public Slider DrinkSlider;
+    public GameObject Slider;
+    public TMP_Text Tip;
 
     private void Awake()
     {

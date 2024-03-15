@@ -9,6 +9,7 @@ public class PlayerManager : MonoBehaviour
     public static PlayerManager Instance { get { return _instance; } }
 
     public bool IsPlayer1Playing = true;
+    public bool IsDrinking;
 
     public List<GameObject> Player1Balls;
     public List<GameObject> Player2Balls;

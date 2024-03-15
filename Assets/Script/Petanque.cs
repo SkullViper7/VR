@@ -115,7 +115,16 @@ public class Petanque : MonoBehaviour
 
             DrunkManager.Instance.Slider.SetActive(true);
             DrunkManager.Instance.DrinkSlider.value = 0;
-            DrunkManager.Instance.Tip.text = "Drink !";
+
+            if (PlayerManager.Instance.IsPlayer1Playing)
+            {
+                DrunkManager.Instance.Tip.text = "Player 1 drink !";
+            }
+            else
+            {
+                DrunkManager.Instance.Tip.text = "Player 2 drink !";
+            }
+
             PlayerManager.Instance.IsDrinking = true;
 
             for (int i = 0; i < 3; i++)
@@ -135,7 +144,16 @@ public class Petanque : MonoBehaviour
         {
             DrunkManager.Instance.Slider.SetActive(true);
             DrunkManager.Instance.DrinkSlider.value = 0;
-            DrunkManager.Instance.Tip.text = "Drink !";
+
+            if (PlayerManager.Instance.IsPlayer1Playing)
+            {
+                DrunkManager.Instance.Tip.text = "Player 1 play !";
+            }
+            else
+            {
+                DrunkManager.Instance.Tip.text = "Player 2 play !";
+            }
+
             PlayerManager.Instance.IsDrinking = true;
             Debug.Log("Next Player");
             PlayerManager.Instance.ChangePlayer(false);
@@ -151,7 +169,16 @@ public class Petanque : MonoBehaviour
 
             DrunkManager.Instance.Slider.SetActive(true);
             DrunkManager.Instance.DrinkSlider.value = 0;
-            DrunkManager.Instance.Tip.text = "Drink !";
+
+            if (PlayerManager.Instance.IsPlayer1Playing)
+            {
+                DrunkManager.Instance.Tip.text = "Player 1 drink !";
+            }
+            else
+            {
+                DrunkManager.Instance.Tip.text = "Player 2 drink !";
+            }
+
             PlayerManager.Instance.IsDrinking = true;
 
             for (int i = 0; i < 3; i++)
@@ -172,7 +199,16 @@ public class Petanque : MonoBehaviour
         {
             DrunkManager.Instance.Slider.SetActive(true);
             DrunkManager.Instance.DrinkSlider.value = 0;
-            DrunkManager.Instance.Tip.text = "Drink !";
+
+            if (PlayerManager.Instance.IsPlayer1Playing)
+            {
+                DrunkManager.Instance.Tip.text = "Player 1 play !";
+            }
+            else
+            {
+                DrunkManager.Instance.Tip.text = "Player 2 play !";
+            }
+
             PlayerManager.Instance.IsDrinking = true;
 
             Debug.Log("Next Player");

@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Rendering;
+using UnityEngine.UI;
 
 public class DrunkManager : MonoBehaviour
 {
@@ -16,6 +17,7 @@ public class DrunkManager : MonoBehaviour
     [SerializeField] Volume _wobble;
     [SerializeField] Animator _canvas;
     [SerializeField] Animator _wobbleAnim;
+    public Slider DrinkSlider; 
 
     private void Awake()
     {

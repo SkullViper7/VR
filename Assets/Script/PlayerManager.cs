@@ -13,8 +13,8 @@ public class PlayerManager : MonoBehaviour
     public List<GameObject> Player1Balls;
     public List<GameObject> Player2Balls;
 
-    public List<Transform> Player1BallsOriginalPos;
-    public List<Transform> Player2BallsOriginalPos;
+    public List<Transform> Player1BallsOriginalPos = new List<Transform>();
+    public List<Transform> Player2BallsOriginalPos = new List<Transform>();
 
     private void Awake()
     {
@@ -33,12 +33,12 @@ public class PlayerManager : MonoBehaviour
     {
         for (int i = 0; i < Player1Balls.Count; i++)
         {
-            Player1BallsOriginalPos[i] = Player1Balls[i].transform;
+            Player1BallsOriginalPos[i].position = Player1Balls[i].transform.position;
         }
 
         for (int i = 0; i < Player2Balls.Count; i++)
         {
-            Player2BallsOriginalPos[i] = Player2Balls[i].transform;
+            Player2BallsOriginalPos[i].position = Player2Balls[i].transform.position;
         }
     }
 

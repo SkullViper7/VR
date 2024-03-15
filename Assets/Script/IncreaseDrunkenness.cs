@@ -49,6 +49,7 @@ public class IncreaseDrunkenness : MonoBehaviour
                     {
                         DrunkManager.Instance.Slider.SetActive(false);
                         DrunkManager.Instance.Tip.text = "You can play now !";
+                        PlayerManager.Instance.IsDrinking = false;
 
                         if (PlayerManager.Instance.IsPlayer1Playing)
                         {

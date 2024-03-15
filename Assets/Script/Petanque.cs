@@ -136,6 +136,7 @@ public class Petanque : MonoBehaviour
             DrunkManager.Instance.Slider.SetActive(true);
             DrunkManager.Instance.DrinkSlider.value = 0;
             DrunkManager.Instance.Tip.text = "Drink !";
+            PlayerManager.Instance.IsDrinking = true;
 
             if (PlayerManager.Instance.IsPlayer1Playing)
             {
@@ -152,6 +153,10 @@ public class Petanque : MonoBehaviour
                 }
             }
         }
+        if (PlayerManager.Instance.Player1Balls.Count == 0)
+        {
+            PlayerManager.Instance.ChangePlayer(false);
+        }
     }
 
     private void UpdateScorePlayer2()
@@ -164,6 +169,7 @@ public class Petanque : MonoBehaviour
             DrunkManager.Instance.Slider.SetActive(true);
             DrunkManager.Instance.DrinkSlider.value = 0;
             DrunkManager.Instance.Tip.text = "Drink !";
+            PlayerManager.Instance.IsDrinking = true;
 
             if (PlayerManager.Instance.IsPlayer1Playing)
             {
@@ -179,6 +185,10 @@ public class Petanque : MonoBehaviour
                     PlayerManager.Instance.Player2Balls[i].SetActive(false);
                 }
             }
+        }
+        if (PlayerManager.Instance.Player1Balls.Count == 0)
+        {
+            PlayerManager.Instance.ChangePlayer(false);
         }
     }
 }

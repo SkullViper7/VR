@@ -6,7 +6,16 @@ public class BallAction : MonoBehaviour
 {
     private void OnTriggerEnter(Collider other)
     {
-        Debug.Log("A passer le collider");
+        if (PlayerManager.Instance.IsPlayer1Playing)
+        {
+            PlayerManager.Instance.Player1Balls.Remove(this.gameObject);
+        }
+
+        else
+        {
+            PlayerManager.Instance.Player2Balls.Remove(this.gameObject);
+        }
+
         StartCoroutine(Petanque.Instance.WaitStopMoveBall());
     }
 }

@@ -6,7 +6,9 @@ using UnityEngine.SocialPlatforms.Impl;
 
 public class ScoreUI : MonoBehaviour
 {
-    public TextMeshPro _scoreText;
+    public TextMeshPro _closetPlayerText;
+    public TextMeshPro _scoreP1;
+    public TextMeshPro _scoreP2;
 
     //Singleton
     private static ScoreUI _instance = null;
@@ -27,11 +29,19 @@ public class ScoreUI : MonoBehaviour
             _instance = this;
         }
         //
-        _scoreText.text = "En attente du lancement de la première boule";
+        _closetPlayerText.text = "En attente du lancement de la première boule";
+        _scoreP1.text = Petanque.Instance.playerName1 + " : 0";
+        _scoreP2.text = Petanque.Instance.playerName2 + " : 0";
     }
 
-    public void UpdateScore(string closetPlayer)
+    public void UpdateClosetPlayer(string closetPlayer)
     {
-        _scoreText.text = "Le joueur le plus proche est " + closetPlayer;
+        _closetPlayerText.text = "Le joueur le plus proche est " + closetPlayer;
+    }
+
+    public void UpdateScorePlayer(int score)
+    {
+        _scoreP1.text = Petanque.Instance.playerName1 + " : " + score;
+        _scoreP2.text = Petanque.Instance.playerName2 + " : " + score;
     }
 }

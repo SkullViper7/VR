@@ -132,6 +132,25 @@ public class Petanque : MonoBehaviour
         {
             _scoreP1++;
             ScoreUI.Instance.UpdateScorePlayer(_scoreP1, _scoreP2);
+
+            DrunkManager.Instance.Slider.SetActive(true);
+            DrunkManager.Instance.DrinkSlider.value = 0;
+            DrunkManager.Instance.Tip.text = "Drink !";
+
+            if (PlayerManager.Instance.IsPlayer1Playing)
+            {
+                for (int i = 0; i < PlayerManager.Instance.Player1Balls.Count; i++)
+                {
+                    PlayerManager.Instance.Player1Balls[i].SetActive(false);
+                }
+            }
+            else
+            {
+                for (int i = 0; i < PlayerManager.Instance.Player2Balls.Count; i++)
+                {
+                    PlayerManager.Instance.Player2Balls[i].SetActive(false);
+                }
+            }
         }
     }
 
@@ -141,6 +160,25 @@ public class Petanque : MonoBehaviour
         {
             _scoreP2++;
             ScoreUI.Instance.UpdateScorePlayer(_scoreP1, _scoreP2);
+
+            DrunkManager.Instance.Slider.SetActive(true);
+            DrunkManager.Instance.DrinkSlider.value = 0;
+            DrunkManager.Instance.Tip.text = "Drink !";
+
+            if (PlayerManager.Instance.IsPlayer1Playing)
+            {
+                for (int i = 0; i < PlayerManager.Instance.Player1Balls.Count; i++)
+                {
+                    PlayerManager.Instance.Player1Balls[i].SetActive(false);
+                }
+            }
+            else
+            {
+                for (int i = 0; i < PlayerManager.Instance.Player2Balls.Count; i++)
+                {
+                    PlayerManager.Instance.Player2Balls[i].SetActive(false);
+                }
+            }
         }
     }
 }

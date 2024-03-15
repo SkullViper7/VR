@@ -31,7 +31,10 @@ public class IncreaseDrunkenness : MonoBehaviour
             {
                 if (other.tag == "MainCamera")
                 {
-                    DrunkManager.Instance.DrinkSlider.value += 0.002f;
+                    if (DrunkManager.Instance.DrinkSlider.value < 1)
+                    {
+                        DrunkManager.Instance.DrinkSlider.value += 0.002f;
+                    }
 
                     if (PlayerManager.Instance.IsPlayer1Playing)
                     {

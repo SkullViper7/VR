@@ -9,7 +9,8 @@ public class DrunkManager : MonoBehaviour
 
     public static DrunkManager Instance { get { return _instance; } }
 
-    public float Drunkenness;
+    public float Player1Drunkenness;
+    public float Player2Drunkenness;
 
     [SerializeField] Volume _blur;
     [SerializeField] Volume _wobble;
@@ -31,18 +32,29 @@ public class DrunkManager : MonoBehaviour
 
     private void Update()
     {
-        if (Drunkenness <= 1)
-        {
-            _blur.weight = Drunkenness;
-            _wobble.weight = Drunkenness;
+        float activeDrunkenness;
 
-            if (Drunkenness >= 0.7f && Drunkenness <= 0.71f)
+        if (PlayerManager.Instance.IsPlayer1Playing)
+        {
+            activeDrunkenness = Player1Drunkenness;
+        }
+        else
+        {
+            activeDrunkenness = Player2Drunkenness;
+        }
+
+        if (activeDrunkenness <= 1)
+        {
+            _blur.weight = activeDrunkenness;
+            _wobble.weight = activeDrunkenness;
+
+            if (activeDrunkenness >= 0.7f && activeDrunkenness <= 0.71f)
             {
                 _canvas.Play("FadeIn");
             }
         }
 
-        if (Drunkenness >= 0.98f && Drunkenness <= 0.99f)
+        if (activeDrunkenness >= 0.98f && activeDrunkenness <= 0.99f)
         {
             _wobbleAnim.enabled = true;
         }

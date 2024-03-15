@@ -15,7 +15,7 @@ public class IncreaseDrunkenness : MonoBehaviour
 
     private void OnParticleCollision(GameObject other)
     {
-        if (DrunkManager.Instance.Drunkenness <= 1)
+        if (DrunkManager.Instance.Player1Drunkenness <= 1)
         {
             int collCount = _particleSystem.GetSafeCollisionEventSize();
 
@@ -30,7 +30,14 @@ public class IncreaseDrunkenness : MonoBehaviour
             {
                 if (other.tag == "MainCamera")
                 {
-                    DrunkManager.Instance.Drunkenness += 0.0002f;
+                    if (PlayerManager.Instance.IsPlayer1Playing)
+                    {
+                        DrunkManager.Instance.Player1Drunkenness += 0.0002f;
+                    }
+                    else
+                    {
+                        DrunkManager.Instance.Player2Drunkenness += 0.0002f;
+                    }
                 }
             }
         }

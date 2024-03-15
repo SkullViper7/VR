@@ -34,6 +34,7 @@ public class Petanque : MonoBehaviour
         //
     }
 
+    // Coroutine qui va attendre que toutes les boulles soient arrété avant de lancer l'update des scores.
     public IEnumerator WaitStopMoveBall()
     {
         bool allStopP1 = false;
@@ -63,11 +64,12 @@ public class Petanque : MonoBehaviour
         allStopP2 = true;
         if (allStopP1 && allStopP2)
         {
-            GetClosestPlayer();
+            UpdateClosetAndScorePlayer();
         }
     }
 
-    private void GetClosestPlayer()
+    // Vérifie la boule du joueur le plus proche.
+    private void UpdateClosetAndScorePlayer()
     {
         float closestDistanceP1 = float.MaxValue;
         float closestDistanceP2 = float.MaxValue;
@@ -92,32 +94,54 @@ public class Petanque : MonoBehaviour
         }
         if (closestDistanceP1 < closestDistanceP2)
         {
+            // Affiche un nom par défaut si aucun nom n'a été donné.
             if (string.IsNullOrEmpty(playerName1))
             {
                 ScoreUI.Instance.UpdateClosetPlayer("le joueur 1");
-                _scoreP1++;
-                ScoreUI.Instance.UpdateScorePlayer(_scoreP1);
+
+                if (PlayerManager.Instance.Player1Balls.Count == 0 && PlayerManager.Instance.Player2Balls.Count == 0)
+                {
+                    _scoreP1++;
+                    ScoreUI.Instance.UpdateScorePlayer(_scoreP1, _scoreP2);
+                }
             }
+            //
+
             else
             {
                 ScoreUI.Instance.UpdateClosetPlayer(playerName1);
-                _scoreP1++;
-                ScoreUI.Instance.UpdateScorePlayer(_scoreP1);
+
+                if (PlayerManager.Instance.Player1Balls.Count == 0 && PlayerManager.Instance.Player2Balls.Count == 0)
+                {
+                    _scoreP1++;
+                    ScoreUI.Instance.UpdateScorePlayer(_scoreP1, _scoreP2);
+                }
             }
         }
         else
         {
+            // Affiche un nom par défaut si aucun nom n'a été donné.
             if (string.IsNullOrEmpty(playerName2))
             {
                 ScoreUI.Instance.UpdateClosetPlayer("le joueur 2");
-                _scoreP2++;
-                ScoreUI.Instance.UpdateScorePlayer(_scoreP2);
+
+                if (PlayerManager.Instance.Player1Balls.Count == 0 && PlayerManager.Instance.Player2Balls.Count == 0)
+                {
+                    _scoreP2++;
+                    ScoreUI.Instance.UpdateScorePlayer(_scoreP1, _scoreP2);
+                }
             }
+            //
+
             else
             {
                 ScoreUI.Instance.UpdateClosetPlayer(playerName2);
-                _scoreP2++;
-                ScoreUI.Instance.UpdateScorePlayer(_scoreP2);
+
+                if (PlayerManager.Instance.Player1Balls.Count == 0 && PlayerManager.Instance.Player2Balls.Count == 0)
+                {
+                    _scoreP2++;
+                    ScoreUI.Instance.UpdateScorePlayer(_scoreP1, _scoreP2);
+                }
             }
         }
     }

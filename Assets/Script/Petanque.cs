@@ -116,29 +116,37 @@ public class Petanque : MonoBehaviour
             DrunkManager.Instance.Slider.SetActive(true);
             DrunkManager.Instance.DrinkSlider.value = 0;
 
+            PlayerManager.Instance.IsDrinking = true;
+
+            for (int i = 0; i < 3; i++)
+            {
+                PlayerManager.Instance.Player1Balls.Add(GameObject.Find($"RedBall{i}"));
+            }
+
+            for (int i = 0; i < 3; i++)
+            {
+                PlayerManager.Instance.Player2Balls.Add(GameObject.Find($"BlueBall{i}"));
+            }
+            PlayerManager.Instance.ChangePlayer(true);
+            PlayerManager.Instance.ResetBalls();
+
             if (PlayerManager.Instance.IsPlayer1Playing)
             {
                 DrunkManager.Instance.Tip.text = "Player 1 drink !";
+
+                for (int i = 0; i < 3; i++)
+                {
+                    PlayerManager.Instance.Player2Balls[i].SetActive(false);
+                    PlayerManager.Instance.Player1Balls[i].SetActive(false);
+                }
             }
             else
             {
                 DrunkManager.Instance.Tip.text = "Player 2 drink !";
             }
 
-            PlayerManager.Instance.IsDrinking = true;
+            Debug.Log("ball reset");
 
-            for (int i = 0; i < 3; i++)
-            {
-                PlayerManager.Instance.Player1Balls.Add(GameObject.FindGameObjectWithTag("Player1Ball"));
-                PlayerManager.Instance.Player1Balls[i].transform.position = PlayerManager.Instance.Player1BallsOriginalPos[i].transform.position;
-            }
-
-            for (int i = 0; i < 3; i++)
-            {
-                PlayerManager.Instance.Player2Balls.Add(GameObject.FindGameObjectWithTag("Player2Ball"));
-                PlayerManager.Instance.Player2Balls[i].transform.position = PlayerManager.Instance.Player2BallsOriginalPos[i].transform.position;
-            }
-            PlayerManager.Instance.ChangePlayer(true);
         }
         if (PlayerManager.Instance.Player1Balls.Count == 0)
         {
@@ -170,30 +178,37 @@ public class Petanque : MonoBehaviour
             DrunkManager.Instance.Slider.SetActive(true);
             DrunkManager.Instance.DrinkSlider.value = 0;
 
+            PlayerManager.Instance.IsDrinking = true;
+
+            for (int i = 0; i < 3; i++)
+            {
+                PlayerManager.Instance.Player1Balls.Add(GameObject.Find($"RedBall{i}"));
+            }
+
+            for (int i = 0; i < 3; i++)
+            {
+                PlayerManager.Instance.Player2Balls.Add(GameObject.Find($"BlueBall{i}"));
+            }
+
+            PlayerManager.Instance.ChangePlayer(true);
+            PlayerManager.Instance.ResetBalls();
+
             if (PlayerManager.Instance.IsPlayer1Playing)
             {
                 DrunkManager.Instance.Tip.text = "Player 1 drink !";
+
+                for (int i = 0; i < 3; i++)
+                {
+                    PlayerManager.Instance.Player2Balls[i].SetActive(false);
+                    PlayerManager.Instance.Player1Balls[i].SetActive(false);
+                }
             }
             else
             {
                 DrunkManager.Instance.Tip.text = "Player 2 drink !";
             }
 
-            PlayerManager.Instance.IsDrinking = true;
-
-            for (int i = 0; i < 3; i++)
-            {
-                PlayerManager.Instance.Player1Balls.Add(GameObject.FindGameObjectWithTag("Player1Ball"));
-                PlayerManager.Instance.Player1Balls[i].transform.position = PlayerManager.Instance.Player1BallsOriginalPos[i].transform.position;
-            }
-
-            for (int i = 0; i < 3; i++)
-            {
-                PlayerManager.Instance.Player2Balls.Add(GameObject.FindGameObjectWithTag("Player2Ball"));
-                PlayerManager.Instance.Player2Balls[i].transform.position = PlayerManager.Instance.Player2BallsOriginalPos[i].transform.position;
-            }
-
-            PlayerManager.Instance.ChangePlayer(true);
+            Debug.Log("ball reset");
         }
         if (PlayerManager.Instance.Player1Balls.Count == 0)
         {

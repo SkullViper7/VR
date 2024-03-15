@@ -32,6 +32,8 @@ public class Petanque : MonoBehaviour
             _instance = this;
         }
         //
+        if (string.IsNullOrEmpty(playerName1)) playerName1 = "Joueur 1";
+        if (string.IsNullOrEmpty(playerName2)) playerName2 = "Joueur 2";
     }
 
     // Coroutine qui va attendre que toutes les boulles soient arrété avant de lancer l'update des scores.
@@ -94,35 +96,13 @@ public class Petanque : MonoBehaviour
         }
         if (closestDistanceP1 < closestDistanceP2)
         {
-            // Affiche un nom par défaut si aucun nom n'a été donné.
-            if (string.IsNullOrEmpty(playerName1))
-            {
-                ScoreUI.Instance.UpdateClosetPlayer("Joueur 1");
-                UpdateScorePlayer1();
-            }
-            //
-
-            else
-            {
-                ScoreUI.Instance.UpdateClosetPlayer(playerName1);
-                UpdateScorePlayer1();
-            }
+            ScoreUI.Instance.UpdateClosetPlayer(playerName1);
+            UpdateScorePlayer1();
         }
         else
         {
-            // Affiche un nom par défaut si aucun nom n'a été donné.
-            if (string.IsNullOrEmpty(playerName2))
-            {
-                ScoreUI.Instance.UpdateClosetPlayer("Joueur 2");
-                UpdateScorePlayer2();
-            }
-            //
-
-            else
-            {
-                ScoreUI.Instance.UpdateClosetPlayer(playerName2);
-                UpdateScorePlayer2();
-            }
+            ScoreUI.Instance.UpdateClosetPlayer(playerName2);
+            UpdateScorePlayer2();
         }
     }
 
@@ -180,7 +160,7 @@ public class Petanque : MonoBehaviour
                 PlayerManager.Instance.Player1Balls[i].transform.position = PlayerManager.Instance.Player1BallsOriginalPos[i].transform.position;
             }
 
-            for (int i = 0; i < 3; i++) 
+            for (int i = 0; i < 3; i++)
             {
                 PlayerManager.Instance.Player2Balls.Add(GameObject.FindGameObjectWithTag("Player2Ball"));
                 PlayerManager.Instance.Player2Balls[i].transform.position = PlayerManager.Instance.Player2BallsOriginalPos[i].transform.position;

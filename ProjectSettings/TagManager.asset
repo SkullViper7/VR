@@ -7,6 +7,7 @@ TagManager:
   - Anchor
   - Player1Ball
   - Player2Ball
+  - Ground
   layers:
   - Default
   - TransparentFX
